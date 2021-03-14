@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./App.css";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      songs: [],
+      audioSource: "",
+      play: false,
+    };
+  }
+
+  componentDidMount() {
+    this.getSongs();
+  }
+
+  getSongs = () => {
+    axios
+      .get("api/songs/")
+      .then((res) => {
+        this.setState({ songs: res.data });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  renderList = () => {
+    const listSong = this.state.songs.map((song) => (
+      <li>
+        <h3>{song.title}</h3>
+        <button onClick={() => this.playSong(song.file)}>Play</button>
+      </li>
+    ));
+    return <ul>{listSong}</ul>;
+  };
+
+  playSong = (url) => {
+    this.setState({ audioSource: url })
+  };
+
+  render() {
+    return (
+      <div className="main">
+        <div className="App">{this.renderList()}</div>
+        <div className="Player">
+          <audio ref="audio_tag" src={this.state.audioSource} controls autoPlay/>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
