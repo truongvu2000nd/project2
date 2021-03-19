@@ -1,7 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import PropTypes from "prop-types";
 import "./App.css";
 import axios from "axios";
+import Container from './Components/container/Container.js'
+// import Bo from './Components/container/Container.js'
+// import Container from './Components/container/Container.js'
+
+// const Example = () =>{
+  
+//   return(
+//     // <Container/>
+//     // <Sidebar />
+//     // <BottomPlayer />
+//   )
+// }
+
 
 class App extends Component {
   constructor(props) {
@@ -51,5 +64,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
