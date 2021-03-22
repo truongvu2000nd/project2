@@ -1,0 +1,31 @@
+.sidebar {
+    width: 224px;
+    height: 1365px;
+    left: 0px;
+    top: 0px;
+    background-color: #030303;
+}
+#logo{
+    position: absolute;
+    width: 224px;
+    height: 224px;
+    left: 0x;
+    top: -24px;
+    background-color: #030303;
+}
+.tab{
+    position: absolute;
+    width: 224px;
+    height: 200px;
+    left: 0px;
+    top: 200px;
+    background-color: #030303;
+}
+.playlist{
+    position: absolute;
+    width: 224px;
+    height: 550px;
+    left: 0px;
+    top: 400px;
+    background-color: #030303;
+}

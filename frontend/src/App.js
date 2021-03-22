@@ -4,6 +4,7 @@ import "./App.css";
 import axios from "axios";
 import Container from "./Components/container/Container.js";
 import BottomPlayer from "./Components/bottomPlayer/BottomPlayer.js";
+import Sidebar from "./Components/sidebar/Sidebar.js";
 // import Bo from './Components/container/Container.js'
 // import Container from './Components/container/Container.js'
 
@@ -74,6 +75,7 @@ class App extends Component {
     return (
       <div className="App">
         <BottomPlayer songs={this.state.songs} />
+        <Sidebar className="side_bar"> </Sidebar>
       </div>
     );
   }
