@@ -2,32 +2,50 @@ import React, { Component, useState } from "react";
 import PropTypes from "prop-types";
 import "./App.css";
 import axios from "axios";
-import Container from './Components/container/Container.js'
+import Container from "./Components/container/Container.js";
+import BottomPlayer from "./Components/bottomPlayer/BottomPlayer.js";
 // import Bo from './Components/container/Container.js'
 // import Container from './Components/container/Container.js'
 
-const App = () => {
-  return(
-    <>
-      <Container />
-    </>
-  )
-}
+// const Example = () =>{
 
+//   return(
+//     // <Container/>
+//     // <Sidebar />
+//     // <BottomPlayer />
+//   )
+// }
 
-// class App extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       songs: [],
-//       audioSource: "",
-//       play: false,
-//     };
-//   }
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      songs: [
+        {
+          id: 1,
+          title: "Trying",
+          author: "Leo",
+          file: "http://127.0.0.1:8000/media/musics/Leo_-_Trying.mp3",
+          image:
+            "http://127.0.0.1:8000/media/imgs/trying-album-cover_A6ClXRl.jpg",
+        },
+        {
+          id: 2,
+          title: "Rock Star",
+          author: "Post Malone",
+          file:
+            "http://127.0.0.1:8000/media/musics/Post_Malone_-_rockstar_ft._21_Savage_1_PtrFFys.mp3",
+          image: "http://127.0.0.1:8000/media/imgs/postmalone_mKFCSuO.jpg",
+        },
+      ],
+      audioSource: "",
+      play: false,
+    };
+  }
 
-//   componentDidMount() {
-//     this.getSongs();
-//   }
+  // componentDidMount() {
+  //   this.getSongs();
+  // }
 
 //   getSongs = () => {
 //     axios
@@ -48,21 +66,17 @@ const App = () => {
 //     return <ul>{listSong}</ul>;
 //   };
 
-//   playSong = (url) => {
-//     this.setState({ audioSource: url })
-//   };
+  playSong = (url) => {
+    this.setState({ audioSource: url });
+  };
 
-//   render() {
-//     return (
-//       <div className="main">
-//         <div className="App">{this.renderList()}</div>
-//         <div className="Player">
-//           <audio ref="audio_tag" src={this.state.audioSource} controls autoPlay/>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
+  render() {
+    return (
+      <div className="App">
+        <BottomPlayer songs={this.state.songs} />
+      </div>
+    );
+  }
+}
 
 export default App;
