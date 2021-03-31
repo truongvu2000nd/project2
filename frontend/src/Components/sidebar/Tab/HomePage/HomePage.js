@@ -4,7 +4,7 @@ import HomeIcon from '@material-ui/icons/Home';
 
 function HomePage(){
     return(
-        <div className="home_page">
+        <div>
             <HomeIcon className="home_icon"> </HomeIcon>
             <text className="home_title"> Home </text>
         </div>

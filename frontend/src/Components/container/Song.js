@@ -1,25 +1,18 @@
 import React from 'react'
 import './container.css'
 
-const Song = () => {
+const Song = ({props, song, addSong2Queue}) => {
     return (
-        <div className="song">
+        <div className="song"  onClick={() => addSong2Queue(song)}>
             <div>
-                <img className="song_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwp4xa4lMHPSd8U-nn3dHRmEvHPA13RWBHUw&usqp=CAU" alt="cover_img"></img>
+                <img className="song_img" src={song.image} alt="cover_img"></img>
             </div>
             <div className="song_info">
-                <h3 className="song_name" >love me like you do</h3>
-                <h4 className="song_description" >Chord dan Lirik Lagu Love Me Like You Do You're The Light You're The Night</h4>
+                <h3 className="song_name" >{song.title}</h3>
+                <h4 className="song_description" ></h4>
 
             </div>
-            {/* <div>
-                <img className="song_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwp4xa4lMHPSd8U-nn3dHRmEvHPA13RWBHUw&usqp=CAU" alt="cover_img"></img>
-            </div>
-            <div className="song_info">
-                <h3 className="song_name" >love me like you do</h3>
-                <h4 className="song_description" >Chord dan Lirik Lagu Love Me Like You Do You're The Light You're The Night</h4>
 
-            </div> */}
         </div>
     )
 }

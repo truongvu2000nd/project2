@@ -1,28 +1,26 @@
 .home_page{
-    position: absolute;
-    width: 224px;
+    position: relative;
+    width: 204px;
     height: 40px;
-    left: 0px;
-    top: 0px;
+    left: 5px;
     background-color: rgb(68, 64, 64);
+    margin: 5px;
 }
 
 .search_box{
-    position: absolute;
-    width: 224px;
+    position: relative;
+    width: 204px;
     height: 40px;
-    left: 0px;
-    top: 50px;
+    left: 5px;
     background-color: rgb(68, 64, 64);
+    margin: 5px;
 }
 
 .library{
-    
-    position: absolute;
-    width: 224px;
+    position: relative;
+    width: 204px;
     height: 40px;
-    left: 0px;
-    top: 100px;
+    left: 5px;
     background-color: rgb(68, 64, 64);
-
+    margin: 5px;
 }

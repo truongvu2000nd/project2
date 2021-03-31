@@ -1,31 +1,27 @@
-.sidebar {
+.side-bar {
+    position: relative;
+    display: flex;
+    grid-area: side-bar;
+    flex-direction: column;
     width: 224px;
-    height: 1365px;
-    left: 0px;
-    top: 0px;
+    /* overflow-y: auto; */
     background-color: #030303;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
 }
+
 #logo{
-    position: absolute;
-    width: 224px;
-    height: 224px;
-    left: 0x;
-    top: -24px;
-    background-color: #030303;
+    position: relative;
 }
 .tab{
-    position: absolute;
-    width: 224px;
-    height: 200px;
-    left: 0px;
-    top: 200px;
-    background-color: #030303;
+    position: relative;
+    cursor: pointer;
+    margin-top: 15px;
+    /* padding-top: 10px; */
 }
 .playlist{
-    position: absolute;
-    width: 224px;
-    height: 550px;
-    left: 0px;
-    top: 400px;
-    background-color: #030303;
+    margin-top: 25px;
+    position: relative;
 }
