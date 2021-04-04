@@ -7,3 +7,7 @@ from .models import Song
 class SongView(viewsets.ModelViewSet):
     serializer_class = SongSerializer
     queryset = Song.objects.all()
+
+# def SongView(viewsets.ModelViewSet):
+#     serializer_class = SongSerializer
+#     queryset = Song.objects.all()
