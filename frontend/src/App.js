@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./App.css";
 import axios from "axios";
@@ -23,17 +24,19 @@ function App() {
   const addSong2Queue = (song) => {
     setQueue([...queue, song]);
     console.log(queue);
-  }
+  };
 
   return (
-    <div className="App">
-      <div className="App-Container">
-        <Sidebar />
-        <Container addSong2Queue={addSong2Queue} />
-        <BottomPlayer queue={queue} />
+    <Router>
+      <div className="App">
+        <div className="App-Container">
+          <Sidebar />
+          <Container addSong2Queue={addSong2Queue} />
+          <BottomPlayer queue={queue} />
+        </div>
       </div>
-    </div>
-  )
+    </Router>
+  );
 }
 
 export default App;

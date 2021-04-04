@@ -47,7 +47,7 @@
 .avatar {
   display: flex;
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 0;
   margin: 10px;
   padding: 5px;
@@ -55,15 +55,16 @@
   border: 0.5px gray solid;
   background: rgba(204, 155, 155, 0.3);
   cursor: pointer;
+  margin: 0;
+  padding: 0 15px;
 }
 
 .avatar_name {
   display: inline-block;
   color: white;
-  font-family: Circular Std;
   font-size: 14px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
@@ -178,3 +179,68 @@
 }
 
 /* end line  */
+
+/* search */
+.search-page {
+  padding: 30px;
+}
+
+.search-bar {
+  position: relative;
+  top: 10px;
+  width: 100%;
+  display: flex;
+  border-radius: 5px;
+  padding-top: 2px;
+  align-items: center;
+  margin-bottom: 16px;
+  background: white;
+}
+
+.search-icon-main {
+  position: relative;
+  padding: 10px;
+}
+
+.search-input {
+  margin-left: 8px;
+  width: 80%;
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 24px;
+  border-inline-color: white;
+}
+
+.search-table {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  margin: 30px 3px;
+  padding: 10px 0 10px;
+}
+
+.search-table > th, td {
+  padding: 10px 0 10px;
+  border-top: 2px solid rgb(43, 41, 41);
+}
+
+.search-table > th {
+  color: rgb(0, 0, 0);
+  opacity: 0.8;
+}
+
+.search-song {
+  color: rgb(255, 255, 255);
+  opacity: 0.8;
+}
+
+.search-table > .search-song:hover {
+  color: rgb(109, 72, 72);
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+/* end search */
+

@@ -61,7 +61,7 @@ function BottomPlayer({props, queue}) {
     setVolume(newValue);
   };
 
-  if (queue.length == 0) {
+  if (queue.length === 0) {
     return (
       <div className="bottom-player">
         <div className="song-details">

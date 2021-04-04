@@ -1,7 +1,7 @@
 import React from 'react'
 import './container.css'
 
-const Song = ({props, song, addSong2Queue}) => {
+const Song = ({ song, addSong2Queue}) => {
     return (
         <div className="song"  onClick={() => addSong2Queue(song)}>
             <div>

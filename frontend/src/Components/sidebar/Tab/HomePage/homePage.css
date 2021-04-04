@@ -1,4 +1,4 @@
-.home_title{
+.home-title{
     position: absolute;
     width: 100px;
     height: 20px;
@@ -10,12 +10,10 @@
     font-size: 16px;
     line-height: 18px;
     color: #FFFFFF;
-    opacity: 0.6;
 }
-.home_icon{
+.home-icon{
     position: absolute;
     left: 20px;
     top: 8px;
     color: #FFFFFF;
-    opacity: 0.6
 }
