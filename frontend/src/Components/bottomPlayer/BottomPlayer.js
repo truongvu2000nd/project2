@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
-import Button from "@material-ui/core/Button";
 import "./BottomPlayer.css";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
@@ -12,23 +11,23 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import VolumeDown from "@material-ui/icons/VolumeDown";
 import VolumeUp from "@material-ui/icons/VolumeUp";
 import Grid from "@material-ui/core/Grid";
+import logo from "./Logo.png";
 
-
-function BottomPlayer(props) {
+function BottomPlayer({props, queue}) {
   const audioRef = useRef();
   const [isPlay, setPlay] = useState(false);
   const [isFavorite, setFavorite] = useState(false);
   const [audioIndex, setAudioIndex] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [queueLength, setQueueLength] = useState(0);
   const [volume, setVolume] = useState(30);
 
   useEffect(() => {
-    setInterval(() => {
-      setQueueLength(props.songs.length);
-    }, 5000);
-  });
+    if (queue.length > 0) {
+      setAudioIndex(queue.length - 1);
+    }
+    setPlay(true);
+  }, [queue]);
 
   const handlePausePlayClick = () => {
     if (isPlay) {
@@ -59,51 +58,39 @@ function BottomPlayer(props) {
   };
 
   const handleVolumeChange = (event, newValue) => {
-    setVolume(newValue)
-  }
+    setVolume(newValue);
+  };
 
-  return (
-    <div>
-      <div className="Bottom-Player">
-        <div className="Song-Details">
+  if (queue.length === 0) {
+    return (
+      <div className="bottom-player">
+        <div className="song-details">
           <img
-            className="Song-Thumbnail"
-            src={props.songs[audioIndex].image}
+            className="song-thumbnail"
+            src={logo}
             alt="song-thumbnail"
           />
-          <div className="Song-Info">
-            <p>{props.songs[audioIndex].title}</p>
+          <div className="song-info">
+            <p>No music</p>
             <br />
-            <p>{props.songs[audioIndex].author}</p>
+            <p></p>
           </div>
-          <div className="Favorite-Button" onClick={handleFavorite}>
+          <div className="favorite-button">
             {!isFavorite ? <FavoriteBorderIcon /> : <FavoriteIcon />}
           </div>
         </div>
-
-        <div className="Song-Controls">
-          <div className="Pause-Play-Button" onClick={handlePausePlayClick}>
-            {isPlay ? <PauseCircleOutlineIcon /> : <PlayCircleOutlineIcon />}
+  
+        <div className="song-controls">
+          <div className="pause-play-button">
+            <PlayCircleOutlineIcon />
           </div>
-
-          <div
-            className="Skip-Next"
-            onClick={() => setAudioIndex((audioIndex + 1) % queueLength)}
-          >
-            <SkipNextIcon />
-          </div>
-          <div
-            className="Skip-Previous"
-            onClick={() => setAudioIndex((audioIndex - 1) % queueLength)}
-          >
-            <SkipPreviousIcon />
-          </div>
+          <div className="skip-next"><SkipNextIcon /></div>
+          <div className="skip-previous"><SkipPreviousIcon /></div>
         </div>
-
-        <div className="Volume-Control">
+        <div className="volume-control">
           <Grid container spacing={2}>
             <Grid item>
-              <VolumeDown style={{ color: '#c9c4c3' }} />
+              <VolumeDown style={{ color: "#c9c4c3" }} />
             </Grid>
             <Grid item xs>
               <Slider
@@ -113,27 +100,89 @@ function BottomPlayer(props) {
               />
             </Grid>
             <Grid item>
-              <VolumeUp style={{ color: '#c9c4c3' }}/>
+              <VolumeUp style={{ color: "#c9c4c3" }} />
             </Grid>
           </Grid>
         </div>
-
-        <div className="Song-Progress-Container">
+        <div className="song-progress-container">
           <Slider
-            className="Song-Progress"
-            value={currentTime}
-            max={duration}
-            onChangeCommitted={handleTimeSliderChange}
+            className="song-progress"
             aria-labelledby="continuous-slider"
           />
-          <audio
-            ref={audioRef}
-            src={props.songs[audioIndex].file}
-            onLoadedData={handleLoadedData}
-            onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}
-            onEnded={() => setPlay(false)}
-          />
         </div>
+      </div>
+    );
+  }
+  return (
+    <div className="bottom-player">
+      <div className="song-details">
+        <img
+          className="song-thumbnail"
+          src={queue[audioIndex].image}
+          alt="song-thumbnail"
+        />
+        <div className="song-info">
+          <p>{queue[audioIndex].title}</p>
+          <br />
+          <p>{queue[audioIndex].author}</p>
+        </div>
+        <div className="favorite-button" onClick={handleFavorite}>
+          {!isFavorite ? <FavoriteBorderIcon /> : <FavoriteIcon />}
+        </div>
+      </div>
+
+      <div className="song-controls">
+        <div className="pause-play-button" onClick={handlePausePlayClick}>
+          {isPlay ? <PauseCircleOutlineIcon /> : <PlayCircleOutlineIcon />}
+        </div>
+
+        <div
+          className="skip-next"
+          onClick={() => setAudioIndex((audioIndex + 1) % queue.length)}
+        >
+          <SkipNextIcon />
+        </div>
+        <div
+          className="skip-previous"
+          onClick={() => setAudioIndex((audioIndex - 1 + queue.length) % queue.length)}
+        >
+          <SkipPreviousIcon />
+        </div>
+      </div>
+
+      <div className="volume-control">
+        <Grid container spacing={2}>
+          <Grid item>
+            <VolumeDown style={{ color: "#c9c4c3" }} />
+          </Grid>
+          <Grid item xs>
+            <Slider
+              value={volume}
+              onChange={handleVolumeChange}
+              aria-labelledby="continuous-slider"
+            />
+          </Grid>
+          <Grid item>
+            <VolumeUp style={{ color: "#c9c4c3" }} />
+          </Grid>
+        </Grid>
+      </div>
+
+      <div className="song-progress-container">
+        <Slider
+          className="song-progress"
+          value={currentTime ? currentTime : 0}
+          max={duration}
+          onChangeCommitted={handleTimeSliderChange}
+          aria-labelledby="continuous-slider"
+        />
+        <audio
+          ref={audioRef}
+          src={queue[audioIndex].file}
+          onLoadedData={handleLoadedData}
+          onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}
+          onEnded={() => setPlay(false)}
+        />
       </div>
     </div>
   );

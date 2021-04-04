@@ -1,12 +1,11 @@
-.add_icon{
+.add-icon{
     position: absolute;
     left: 10px;
     top: 8px;
     color: #FFFFFF;
-    opacity: 0.6;
 }
 
-.add_title{
+.add-title{
     position: absolute;
     width: 150px;
     height: 20px;
@@ -18,5 +17,4 @@
     font-size: 16px;
     line-height: 18px;
     color: #FFFFFF;
-    opacity: 0.6;
 }

@@ -1,5 +1,6 @@
-.Bottom-Player {
-    position: fixed;
+.bottom-player {
+    position: relative;
+    grid-area: bottom-player;
     width: 100%;
     bottom: 0;
     left: 0;
@@ -8,7 +9,7 @@
     z-index: 2;
 }
 
-.Song-Details {
+.song-details {
     position: relative;
     top: 7px;
     width: 30%;
@@ -16,28 +17,28 @@
     margin: 0 5px;
 }
 
-.Song-Thumbnail {
+.song-thumbnail {
     position: absolute;
     width: 48px;
     height: 48px;
     margin: 10px;
 }
 
-.Song-Info {
+.song-info {
     position: absolute;
     width: auto;
     height: auto;
     left: 62px;
-    margin-top: 4px;
+    margin-top: 10px;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
-    line-height: 2px;
+    line-height: 15px;
     color:white;
     opacity: 0.6;
 }
 
-.Favorite-Button {
+.favorite-button {
     position: relative;
     width: 16px;
     height: 16px;
@@ -48,7 +49,7 @@
     cursor: pointer;
 }
 
-.Pause-Play-Button {
+.pause-play-button {
     position: absolute;
     height: 15px;
     width: 15px;
@@ -60,7 +61,7 @@
     cursor: pointer;
 }
 
-.Skip-Previous {
+.skip-previous {
     position: absolute;
     width: 20px;
     height: 15px;
@@ -71,7 +72,7 @@
     cursor: pointer;
 }
 
-.Skip-Next {
+.skip-next {
     position: absolute;
     width: 20px;
     height: 15px;
@@ -82,7 +83,7 @@
     cursor: pointer;
 }
 
-.Volume-Control {
+.volume-control {
     position: absolute;
     /* width: 30%; */
     /* font-size: 40px; */
@@ -92,7 +93,7 @@
     bottom: 0px;
 }
 
-.Song-Progress-Container {
+.song-progress-container {
     position: absolute;
     display: flex;
     left: 36%;

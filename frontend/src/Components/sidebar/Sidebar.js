@@ -7,7 +7,7 @@ import Playlist from "./Playlist/Playlist"
 function Sidebar(){
     return(
         
-        <div className="side_bar">
+        <div className="side-bar">
             <img id="logo" src={logo} alt="logo"></img>
             <Tab className="tab"> </Tab>
             <Playlist className="playlist"></Playlist>

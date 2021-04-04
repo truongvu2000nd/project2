@@ -4,9 +4,9 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 
 function AddPlaylist(){
     return(
-        <div className="add_playlist">
-            <AddBoxIcon className="add_icon"> </AddBoxIcon>
-            <text className="add_title"> Create new playlist </text>
+        <div className="add-playlist">
+            <AddBoxIcon className="add-icon"> </AddBoxIcon>
+            <text className="add-title"> Create new playlist </text>
         </div>
     );
 };

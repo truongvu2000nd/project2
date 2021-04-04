@@ -1,33 +1,45 @@
-import React from 'react'
-import Profile from './Profile'
-import Line from './Line'
-import './container.css'
+import React, { useState, useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
+import Profile from "./Profile";
+import Line from "./Line";
+import "./container.css";
+import SearchPage from "./searchPage/SearchPage.js";
+
+import axios from "axios";
 //import icon
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { Icon, IconButton } from '@material-ui/core';
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
-const Container = () => {
-    return (
-        <div className="container">
-            <div className="topNav">
-                <IconButton >
-                    <ChevronLeftIcon className="chevron"/>
-                </IconButton>
-                <IconButton >
-                    <ChevronRightIcon className="chevron" />
-                </IconButton>
-                <Profile />
-            </div>
+const Container = ({ addSong2Queue }) => {
+  const [publicSongs, setPublicSongs] = useState([]);
 
-            <div className="line">
-                <Line/>
-            </div>
+  useEffect(() => {
+    axios
+      .get("api/songs/")
+      .then((res) => {
+        setPublicSongs(res.data);
+        console.log(publicSongs);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
+  return (
+    <div className="container">
+      <div className="topNav">
+        <ChevronLeftIcon className="chevron" />
+        <ChevronRightIcon className="chevron" />
+        <Profile />
+      </div>
+      <Switch>
+        <Route exact path="/">
+          <Line songs={publicSongs} addSong2Queue={addSong2Queue} />
+        </Route>
+        <Route path="/search">
+          <SearchPage addSong2Queue={addSong2Queue} />
+        </Route>
+      </Switch>
+    </div>
+  );
+};
 
-
-        </div>
-    )
-}
-
-export default Container
+export default Container;
