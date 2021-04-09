@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function SearchTable({ addSong2Queue }) {
-  const songs = [
+export default function SearchTable({ songs, addSong2Queue }) {
+  /*const songs = [
     {
       id: 1,
       title: "Trying",
@@ -19,7 +19,7 @@ export default function SearchTable({ addSong2Queue }) {
       image: "http://localhost:8000/media/imgs/postmalone_mKFCSuO.jpg",
       genre: "Rock",
     },
-  ];
+  ]; */
 
   const songList = songs.map((song) => (
     <tr className="search-song" onClick={() => addSong2Queue(song)}>

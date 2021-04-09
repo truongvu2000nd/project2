@@ -24,6 +24,7 @@ from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register(r'songs', musicViews.SongView, 'song')
+router.register(r'search', musicViews.SongSearch, '')
 
 urlpatterns = [
     path('account/',include('account.urls')),
