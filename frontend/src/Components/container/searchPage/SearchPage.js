@@ -4,21 +4,24 @@ import SearchTable from "./SearchTable.js";
 import axios from 'axios';
 
 function SearchPage({ addSong2Queue }) {
-  const [searchTerm, setSearchTerm] = useState("");
+//  const [searchTerm, setSearchTerm] = useState("");
   const [publicSongs, setPublicSongs] = useState([]);
+  
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
-    //console.log(searchTerm);
-    axios
-      .get("api/search/", {params: {search: searchTerm}} )
+    if (event.target.value =='') {setPublicSongs([])}
+    else {
+      axios
+      .get("api/search/", {params: {search: event.target.value}} )
       .then((res) => {
         setPublicSongs(res.data);
         //console.log(publicSongs)
         //console.log(res);
       }) 
       .catch((err) => console.log(err));
+      }
   };
+    
 
   return (
     <div className="search-page">
@@ -28,7 +31,7 @@ function SearchPage({ addSong2Queue }) {
           className="search-input"
           type="text"
           placeholder="Search"
-          value={searchTerm}
+          // value={searchTerm}
           onChange={handleChange}
         />
       </div>
