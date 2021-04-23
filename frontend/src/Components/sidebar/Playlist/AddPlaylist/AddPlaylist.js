@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./addPlaylist.css";
-import AddBoxIcon from '@material-ui/icons/AddBox';
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import CreatePlaylistModal from "./CreatePlaylistModal.js";
 
-function AddPlaylist(){
-    return(
-        <div className="add-playlist">
-            <AddBoxIcon className="add-icon"> </AddBoxIcon>
-            <text className="add-title"> Create new playlist </text>
-        </div>
-    );
-};
+function AddPlaylist() {
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpen = () => {
+    setOpenModal(true);
+  };
+
+  return (
+    <div>
+      <div className="add-playlist" onClick={handleOpen}>
+        <AddBoxIcon className="add-icon" />
+        <text className="add-title"> Create new playlist </text>
+      </div>
+      <CreatePlaylistModal open={openModal} setOpen={setOpenModal} />
+    </div>
+  );
+}
 
 export default AddPlaylist;
