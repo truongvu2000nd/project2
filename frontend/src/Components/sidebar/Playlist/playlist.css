@@ -28,3 +28,13 @@
   border-radius: 2px;
   cursor: pointer;
 }
+
+.list-playlist {
+  color: white;
+  font-size: 14px;
+}
+
+.list-playlist > li:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

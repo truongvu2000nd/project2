@@ -1,28 +1,41 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import SongMenu from "../songMenu/SongMenu.js";
 
 export default function SearchTable({ songs, addSong2Queue }) {
-  /*const songs = [
-    {
-      id: 1,
-      title: "Trying",
-      artist: "Leo",
-      file: "http://localhost:8000/media/musics/Leo_-_Trying.mp3",
-      image: "http://localhost:8000/media/imgs/trying-album-cover_A6ClXRl.jpg",
-      genre: "Pop",
+  const [xPos, setXPos] = useState("0px");
+  const [yPos, setYPos] = useState("0px");
+  const [showMenu, setShowMenu] = useState(false);
+
+  const handleContextMenu = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      setXPos(`${e.pageX}px`);
+      setYPos(`${e.pageY}px`);
+      setShowMenu(true);
     },
-    {
-      id: 2,
-      title: "Rock Star",
-      artist: "Post Malone",
-      file:
-        "http://localhost:8000/media/musics/Post_Malone_-_rockstar_ft._21_Savage_1_PtrFFys.mp3",
-      image: "http://localhost:8000/media/imgs/postmalone_mKFCSuO.jpg",
-      genre: "Rock",
-    },
-  ]; */
+    [setXPos, setYPos]
+  );
+
+  const handleClick = useCallback(() => {
+    showMenu && setShowMenu(false);
+  }, [showMenu]);
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+    return () => {
+      document.addEventListener("click", handleClick);
+    };
+  });
 
   const songList = songs.map((song) => (
-    <tr className="search-song" onClick={() => addSong2Queue(song)}>
+    <tr
+      className="search-song"
+      onClick={() => {
+        addSong2Queue(song);
+      }}
+      onContextMenu={handleContextMenu}
+    >
       <td>{song.title}</td>
       <td>{song.artist}</td>
       <td>n/a</td>
@@ -37,6 +50,7 @@ export default function SearchTable({ songs, addSong2Queue }) {
         <th>DURATION</th>
       </tr>
       {songList}
+      <SongMenu xPos={xPos} yPos={yPos} showMenu={showMenu} />
     </table>
   );
 }

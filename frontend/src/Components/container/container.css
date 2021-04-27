@@ -219,11 +219,13 @@
   text-align: left;
   margin: 30px 3px;
   padding: 10px 0 10px;
+  border-collapse: collapse;
 }
 
 .search-table > th, td {
   padding: 10px 0 10px;
   border-top: 2px solid rgb(43, 41, 41);
+  /* border: 0px solid #ddd;  */
 }
 
 .search-table > th {
@@ -240,7 +242,19 @@
   color: rgb(109, 72, 72);
   opacity: 0.6;
   cursor: pointer;
+  background: rgb(182, 182, 182);
 }
 
 /* end search */
 
+/* context-menu */
+
+.song-context-menu {
+  position: fixed;
+  background: #c3c5c5;
+  width: 200px;
+  /* height: 100px; */
+  vertical-align: center;
+}
+
+/* end context-menu */

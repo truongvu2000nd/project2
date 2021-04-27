@@ -19,7 +19,6 @@ const Container = ({ addSong2Queue }) => {
       .get("api/songs/")
       .then((res) => {
         setPublicSongs(res.data);
-        console.log(publicSongs);
       })
       .catch((err) => console.log(err));
   }, []);
