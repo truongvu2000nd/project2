@@ -5,6 +5,7 @@ import Line from "./Line";
 import "./container.css";
 import SearchPage from "./searchPage/SearchPage.js";
 import PlaylistPage from "./playlistPage/PlaylistPage.js";
+import Library from "./library/Library.js"
 
 import axios from "axios";
 //import icon
@@ -39,6 +40,9 @@ const Container = ({ addSong2Queue }) => {
         </Route>
         <Route exact path="/playlist/:id">
           <PlaylistPage addSong2Queue={addSong2Queue}/>
+        </Route>
+        <Route path="/library">
+          <Library> </Library>
         </Route>
       </Switch>
     </div>
