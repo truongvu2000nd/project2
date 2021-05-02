@@ -4,6 +4,7 @@ import Profile from "./Profile";
 import Line from "./Line";
 import "./container.css";
 import SearchPage from "./searchPage/SearchPage.js";
+import PlaylistPage from "./playlistPage/PlaylistPage.js";
 
 import axios from "axios";
 //import icon
@@ -35,6 +36,9 @@ const Container = ({ addSong2Queue }) => {
         </Route>
         <Route path="/search">
           <SearchPage addSong2Queue={addSong2Queue} />
+        </Route>
+        <Route exact path="/playlist/:id">
+          <PlaylistPage addSong2Queue={addSong2Queue}/>
         </Route>
       </Switch>
     </div>

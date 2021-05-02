@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import AddPlaylist from "./AddPlaylist/AddPlaylist";
 import "./playlist.css";
 import axios from "axios";
 
 function Playlist() {
-  const [playlists, setPlaylists] = useState([]);
+  const [playlists, setPlaylists] = useState([{
+    "id": 0,
+    "name": "",
+  }]);
 
   const renderPlaylists = () => {
     const listPlaylist = playlists.map((playlist) => (
       <li>
         <div className="playlist-name">
-          <text>{playlist.name}</text>
+          <Link to={{ pathname: `/playlist/${playlist.id}` }}>
+            {playlist.name}
+          </Link>
         </div>
       </li>
     ));

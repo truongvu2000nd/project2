@@ -25,7 +25,7 @@
   bottom: 80px;
   left: 0px;
   top: 0px;
-  
+
   overflow: scroll;
   background: linear-gradient(161deg, #12121287 0.59%, #121212d6 99.74%);
 }
@@ -222,7 +222,8 @@
   border-collapse: collapse;
 }
 
-.search-table > th, td {
+.search-table > th,
+td {
   padding: 10px 0 10px;
   border-top: 2px solid rgb(43, 41, 41);
   /* border: 0px solid #ddd;  */
@@ -256,5 +257,72 @@
   /* height: 100px; */
   vertical-align: center;
 }
+.song-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+}
+
+.song-menu li div {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Change the link color on hover */
+.song-menu li div:hover {
+  background-color: #555;
+  color: white;
+}
 
 /* end context-menu */
+
+/* playlist */
+
+.playlist-page-name {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 96px;
+  line-height: 96px;
+  background: linear-gradient(transparent 0,rgb(104 102 223 / 50%) 100%);
+  padding-bottom: 40px;
+}
+
+.playlist-song-table {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  margin: 30px 3px;
+  padding: 10px 0 10px;
+  border-collapse: collapse;
+}
+
+.playlist-song-table > th,
+td {
+  padding: 10px 0 10px;
+  border-top: 2px solid rgb(43, 41, 41);
+  /* border: 0px solid #ddd;  */
+}
+
+.playlist-song-table > th {
+  color: rgb(0, 0, 0);
+  opacity: 0.8;
+}
+
+.playlist-page-song {
+  color: rgb(255, 255, 255);
+  opacity: 0.8;
+}
+
+.playlist-song-table > .playlist-page-song:hover {
+  color: rgb(109, 72, 72);
+  opacity: 0.6;
+  cursor: pointer;
+  background: rgb(182, 182, 182);
+}

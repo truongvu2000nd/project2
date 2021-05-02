@@ -5,6 +5,7 @@ export default function SearchTable({ songs, addSong2Queue }) {
   const [xPos, setXPos] = useState("0px");
   const [yPos, setYPos] = useState("0px");
   const [showMenu, setShowMenu] = useState(false);
+  const [currSong, setCurrSong] = useState(null);
 
   const handleContextMenu = useCallback(
     (e) => {
@@ -34,7 +35,10 @@ export default function SearchTable({ songs, addSong2Queue }) {
       onClick={() => {
         addSong2Queue(song);
       }}
-      onContextMenu={handleContextMenu}
+      onContextMenu={(e) => {
+        handleContextMenu(e);
+        setCurrSong(song);
+      }}
     >
       <td>{song.title}</td>
       <td>{song.artist}</td>
@@ -50,7 +54,7 @@ export default function SearchTable({ songs, addSong2Queue }) {
         <th>DURATION</th>
       </tr>
       {songList}
-      <SongMenu xPos={xPos} yPos={yPos} showMenu={showMenu} />
+      <SongMenu xPos={xPos} yPos={yPos} showMenu={showMenu} song={currSong} addSong2Queue={addSong2Queue} />
     </table>
   );
 }

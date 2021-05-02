@@ -8,6 +8,7 @@ class Song(models.Model):
     file = models.FileField(upload_to='musics/')
     image = models.FileField(upload_to='imgs/', null=True)
     genre = models.CharField(max_length=50, null=True)
+    artist = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return self.title
@@ -21,5 +22,5 @@ class Playlist(models.Model):
 
 
 class PlaylistSongRelation(models.Model):
-    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
-    song = models.ForeignKey(Song, on_delete=models.CASCADE)
+    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE, related_name="playlist_relation")
+    song = models.ForeignKey(Song, on_delete=models.CASCADE, related_name="song_relation")

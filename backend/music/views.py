@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework.decorators import action
 from .serializers import (
     SongSerializer,
     PlaylistSerializer,
@@ -7,6 +8,7 @@ from .serializers import (
 from .models import (
     Song,
     Playlist,
+    PlaylistSongRelation,
 )
 from rest_framework.response import Response
 
@@ -36,3 +38,13 @@ class SongSearch(viewsets.ViewSet):
 class PlaylistView(viewsets.ModelViewSet):
     serializer_class = PlaylistSerializer
     queryset = Playlist.objects.all()
+
+    @action(methods=["get"], detail=True)
+    def get_relation_song(self, request, pk=None):
+        print(pk)
+        queryset = Song.objects.filter(
+            song_relation__playlist=pk
+        )
+
+        serializer = SongSerializer(queryset, many=True)
+        return Response(serializer.data)

@@ -42,7 +42,7 @@ const Song = ({ song, addSong2Queue }) => {
         <h3 className="song_name">{song.title}</h3>
         <h4 className="song_description"></h4>
       </div>
-      <SongMenu xPos={xPos} yPos={yPos} showMenu={showMenu} />
+      <SongMenu xPos={xPos} yPos={yPos} showMenu={showMenu} song={song} addSong2Queue={addSong2Queue} />
     </div>
   );
 };
