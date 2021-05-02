@@ -1,20 +1,73 @@
-.add-icon{
-    position: absolute;
-    left: 10px;
-    top: 8px;
-    color: #FFFFFF;
+.add-icon {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  color: #ffffff;
 }
 
-.add-title{
-    position: absolute;
-    width: 150px;
-    height: 20px;
-    left: 50px;
-    top: 12px;
-    font-family: Circular Std;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
-    color: #FFFFFF;
+.add-title {
+  position: absolute;
+  width: 150px;
+  height: 20px;
+  left: 50px;
+  top: 12px;
+  font-family: Circular Std;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.create-form {
+  border-radius: 6px;
+  width: 30%;
+  margin: 12px;
+  padding: 36px 48px 48px;
+  background-color: white;
+}
+
+.create-form > h1 {
+  text-align: center;
+  color: rgb(31, 31, 31);
+  font-size: 34px;
+  line-height: 42px;
+}
+
+.create-form > label {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.create-form > label > input {
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 2px;
+  font-size: 16px;
+  line-height: 22px;
+  outline: none;
+  transition: border-color 250ms ease-out 0s, margin-bottom 350ms ease-out 0s;
+  padding: 12px 0 12px;
+  text-indent: 12px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.create-form > input {
+  background: rgb(42, 115, 204);
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 24px;
+  padding: 12px 32px;
+  text-align: center;
+  transition: background-color 250ms ease-out 0s, box-shadow 250ms ease-out 0s,
+    color 250ms ease-out 0s;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
 }

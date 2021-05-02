@@ -28,3 +28,31 @@
   border-radius: 2px;
   cursor: pointer;
 }
+
+.list-playlist {
+  font-size: 14px;
+  list-style-type: none;
+}
+
+.list-playlist > li {
+  padding: 3px 5px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 10px;
+  /* background: #918b8b; */
+}
+
+.list-playlist > li:hover {
+  opacity: 0.8;
+}
+
+.list-playlist li a {
+  text-decoration: none;
+}
+
+.playlist-name {
+  background: #918b8b;
+  margin-right: 30px;
+  font-size: 20px;
+  padding: 3px 5px;
+}
