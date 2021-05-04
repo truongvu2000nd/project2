@@ -1,10 +1,12 @@
-from django.shortcuts import render
-from rest_framework import viewsets
+from django.shortcuts import render,get_object_or_404
+from django.http import JsonResponse
+from rest_framework import viewsets,status
 from rest_framework.decorators import action
 from .serializers import (
     SongSerializer,
     PlaylistSerializer,
 )
+from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
 from .models import (
     Song,
     Playlist,
@@ -13,6 +15,10 @@ from .models import (
 from rest_framework.response import Response
 
 # Create your views here.
+
+# file type
+AUDIO_FILE_TYPES = ['wav', 'mp3', 'ogg']
+IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
 
 class SongView(viewsets.ModelViewSet):
@@ -48,3 +54,51 @@ class PlaylistView(viewsets.ModelViewSet):
 
         serializer = SongSerializer(queryset, many=True)
         return Response(serializer.data)
+
+class SongCreateView(ListCreateAPIView):
+    model = Song
+    serializer_class = SongSerializer
+
+    def get_queryset(self):
+        return Song.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        serializer = SongSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return JsonResponse({
+                'message':'Create a new Song successfull!'
+            }, status=status.HTTP_201_CREATED)
+
+        return JsonResponse({
+            'message':'Create a new Song unsuccessful!'
+        }, status = status.HTTP_400_BAD_REQUEST)
+
+class UpdateDeleteSongView(RetrieveUpdateDestroyAPIView):
+    model = Song
+    serializer_class = SongSerializer
+
+    def put(self, request, *args,**kwargs):
+        song = get_object_or_404(Song, id=kwargs.get('pk'))
+        serializer = SongSerializer(post, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return JsonResponse({
+                'message':'Update Song successful!'
+            },status=status.HTTP_200_OK)
+        
+        return JsonResponse({
+            'message':'Update Song unsuccessful!'
+        }, status= status.HTTP_400_BAD_REQUEST)
+
+    def delete(self,request,*args, **kwargs):
+        song = get_object_or_404(Song,id = kwargs.get('pk'))
+        song.delete()
+
+        return JsonResponse({
+            'message':'Delete song successful!'
+        },status= status.HTTP_200_OK)

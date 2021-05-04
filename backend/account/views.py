@@ -8,13 +8,13 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
-from .forms import CreateUserFrom
+from .forms import CreateUserForm
 
 def registerPage(request):
-    form = CreateUserFrom()
+    form = CreateUserForm()
 
     if request.method == 'POST':
-        form = CreateUserFrom(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
             user = form.cleaned_data.get('username')

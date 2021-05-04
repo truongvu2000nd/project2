@@ -21,6 +21,7 @@ from music.views import (
     SongSearch,
     PlaylistView,
 )
+from music import views
 from django.conf.urls.static import static
 from django.conf import settings
 # minh hieu
@@ -31,8 +32,13 @@ router.register(r'songs', SongView, basename='song')
 router.register(r'search', SongSearch, basename='search')
 router.register(r'playlists', PlaylistView, basename='playlist')
 
+
+
+
 urlpatterns = [
     path('account/', include('account.urls')),
+    path('songs',views.SongCreateView.as_view()),
+    path('song/<int:pk>',views.UpdateDeleteSongView.as_view()),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
