@@ -8,7 +8,7 @@ class UserSersializer(serializers.ModelSerializer):
         fields = ('email','password')
         extra_kwargs = {'password':{'write_only':True}}
 
-class UserLoginSerializer(serializers.ModelSerializer):
+class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
     password = serializers.CharField(required=True)
     

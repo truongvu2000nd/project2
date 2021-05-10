@@ -35,11 +35,12 @@ class UserLoginView(APIView):
         if serializer.is_valid():
             user = authenticate(
                 request,
-                email=serializer.validated_data['email'],
+                username=serializer.validated_data['email'],
                 password = serializer.validated_data['password']
             )
 
             if user:
+                print("user co dung ko")
                 refresh = TokenObtainPairSerializer.get_token(user)
                 data = {
                     'refresh_token': str(refresh),
