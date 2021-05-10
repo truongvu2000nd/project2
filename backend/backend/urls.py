@@ -24,7 +24,9 @@ from music.views import (
 from music import views
 from django.conf.urls.static import static
 from django.conf import settings
-# minh hieu
+from authentication.views import UserRegisterView,UserLoginView
+# to handle login ( generate token)
+from rest_framework_simplejwt import views as jwt_views
 
 
 router = routers.DefaultRouter()
@@ -36,6 +38,8 @@ router.register(r'playlists', PlaylistView, basename='playlist')
 
 
 urlpatterns = [
+    path('api/register/', UserRegisterView.as_view(), name='register'),
+    path('api/login/',UserLoginView.as_view(),name='login'),
     path('account/', include('account.urls')),
     path('songs',views.SongCreateView.as_view()),
     path('song/<int:pk>',views.UpdateDeleteSongView.as_view()),
