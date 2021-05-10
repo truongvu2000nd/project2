@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import AddSongToPlaylistModal from "../playlistPage/AddSongToPlaylistModal.js";
 
 export default function SongMenu({
   xPos,
@@ -7,6 +8,7 @@ export default function SongMenu({
   song,
   addSong2Queue,
 }) {
+  const [openModal, setOpenModal] = useState(false);
   const menu = (
     <ul className="song-menu">
       <li>
@@ -19,10 +21,17 @@ export default function SongMenu({
         </div>
       </li>
       <li>
-        <div onClick="#">Add to favorite</div>
+        <div>Add to favorite</div>
       </li>
       <li>
-        <div onClick="#">Add to playlist</div>
+        <div
+          onClick={(e) => {
+            e.preventDefault();
+            setOpenModal(true);
+          }}
+        >
+          Add to playlist
+        </div>
       </li>
     </ul>
   );
@@ -42,6 +51,11 @@ export default function SongMenu({
       ) : (
         <></>
       )}
+      <AddSongToPlaylistModal
+        open={openModal}
+        setOpen={setOpenModal}
+        song={song}
+      />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import "./addPlaylist.css";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import CreatePlaylistModal from "./CreatePlaylistModal.js";
 
-function AddPlaylist() {
+function AddPlaylist({ createPlaylist }) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = () => {
@@ -16,7 +16,11 @@ function AddPlaylist() {
         <AddBoxIcon className="add-icon" />
         <text className="add-title"> Create new playlist </text>
       </div>
-      <CreatePlaylistModal open={openModal} setOpen={setOpenModal} />
+      <CreatePlaylistModal
+        open={openModal}
+        setOpen={setOpenModal}
+        createPlaylist={createPlaylist}
+      />
     </div>
   );
 }

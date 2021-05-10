@@ -1,55 +1,60 @@
 import { React, useState } from "react";
-import "./loginModal.css";
+import "./playlistPage.css";
+// import axios from "axios";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Button } from "@material-ui/core";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
 
-function AddSongToPlaylistModal({ open, setOpen }) {
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  });
-
+function AddSongToPlaylistModal({ open, setOpen, song }) {
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("api/playlists/", {
+  //       name: values,
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //     }, (error) => {
+  //       console.log(error);
+  //     });
+  // }
+  const listAvailablePlaylist = [
+    {
+      name: "Playlist #1",
+    },
+    {
+      name: "Playlist #2",
+    },
+    {
+      name: "Playlist #1",
+    },
+    {
+      name: "Playlist #2",
+    },
+    {
+      name: "Playlist #1",
+    },
+    {
+      name: "Playlist #2",
+    },
+  ];
 
-  const loginForm = (
-    <form className="login-form" onSubmit="#">
-      <h1>Login</h1>
-      <label>
-        Email:
-        <br />
-        <input
-          type="text"
-          value={values.email}
-          onChange={handleChange('email')}
-          placeholder="name@email.com"
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <br />
-        <input
-          type="password"
-          value={values.password}
-          onChange={handleChange('password')}
-          placeholder="Enter your password"
-        />
-      </label>
-      <br />
-      <br />
-      <input type="submit" value="Login" />
-    </form>
-  );
+  const addSongToPlaylistModal = () => {
+    const list = listAvailablePlaylist.map((playlist) => (
+      <li>
+        <h2>{playlist.name}</h2>
+        <Button variant="contained" color="secondary">
+          Add
+        </Button>
+      </li>
+    ));
+    return <ul className="listAvailablePlaylist">{list}</ul>;
+  };
 
   return (
     <div>
@@ -65,10 +70,10 @@ function AddSongToPlaylistModal({ open, setOpen }) {
           timeout: 500,
         }}
       >
-        <Fade in={open}>{loginForm}</Fade>
+        <Fade in={open}>{addSongToPlaylistModal()}</Fade>
       </Modal>
     </div>
   );
 }
 
-export default LoginModal;
+export default AddSongToPlaylistModal;
