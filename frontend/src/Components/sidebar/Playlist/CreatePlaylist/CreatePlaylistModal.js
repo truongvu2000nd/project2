@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./addPlaylist.css";
+import "./createPlaylist.css";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";

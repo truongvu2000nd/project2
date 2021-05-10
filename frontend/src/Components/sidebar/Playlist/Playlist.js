@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AddPlaylist from "./AddPlaylist/AddPlaylist";
+import CreatePlaylist from "./CreatePlaylist/CreatePlaylist.js";
+import Cookies from 'js-cookie';
 import "./playlist.css";
 import axios from "axios";
 
@@ -32,25 +33,25 @@ function Playlist() {
     refreshList();
   }, []);
 
-  const getCookie = (name) => {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
+  // const getCookie = (name) => {
+  //   let cookieValue = null;
+  //   if (document.cookie && document.cookie !== '') {
+  //       const cookies = document.cookie.split(';');
+  //       for (let i = 0; i < cookies.length; i++) {
+  //           const cookie = cookies[i].trim();
+  //           // Does this cookie string begin with the name we want?
+  //           if (cookie.substring(0, name.length + 1) === (name + '=')) {
+  //               cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+  //               break;
+  //           }
+  //       }
+  //   }
+  //   return cookieValue;
+  // } 
 
   const createPlaylist = (e, playlistName) => {
     // e.preventDefault();
-    const csrftoken = getCookie('csrftoken');
+    const csrftoken = Cookies.get('csrftoken');
     axios
       .post(
         "api/playlists/",
@@ -73,7 +74,7 @@ function Playlist() {
     <div className="playlist">
       <text className="playlist-title"> Playlist </text>
       <div>{renderPlaylists()}</div>
-      <AddPlaylist createPlaylist={createPlaylist}/>
+      <CreatePlaylist createPlaylist={createPlaylist}/>
     </div>
   );
 }

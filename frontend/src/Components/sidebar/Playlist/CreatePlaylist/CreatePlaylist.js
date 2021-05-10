@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./addPlaylist.css";
+import "./createPlaylist.css";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import CreatePlaylistModal from "./CreatePlaylistModal.js";
 
-function AddPlaylist({ createPlaylist }) {
+function CreatePlaylist({ createPlaylist }) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = () => {
@@ -25,4 +25,4 @@ function AddPlaylist({ createPlaylist }) {
   );
 }
 
-export default AddPlaylist;
+export default CreatePlaylist;
