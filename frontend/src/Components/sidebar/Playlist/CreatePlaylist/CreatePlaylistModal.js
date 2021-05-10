@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import "./addPlaylist.css";
+import axios from "axios";
+import "./createPlaylist.css";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 
-export default function CreatePlaylistModal({ open, setOpen }) {
+export default function CreatePlaylistModal({ open, setOpen, createPlaylist }) {
   const [playlistName, setPlaylistName] = useState("");
 
   const handleChange = (event) => {
@@ -16,7 +17,12 @@ export default function CreatePlaylistModal({ open, setOpen }) {
   };
 
   const createForm = (
-    <form className="create-form" onSubmit="#">
+    <form
+      className="create-form"
+      onSubmit={(e) => {
+        createPlaylist(e, playlistName);
+      }}
+    >
       <h1>Create new playlist</h1>
       <label>
         Playlist name:

@@ -20,6 +20,7 @@ from music.views import (
     SongView,
     SongSearch,
     PlaylistView,
+    PlaylistSongRelationView,
 )
 from music import views
 from django.conf.urls.static import static
@@ -33,7 +34,7 @@ router = routers.DefaultRouter()
 router.register(r'songs', SongView, basename='song')
 router.register(r'search', SongSearch, basename='search')
 router.register(r'playlists', PlaylistView, basename='playlist')
-
+router.register(r'playlist-song', PlaylistSongRelationView, basename='playlist-song')
 
 
 
@@ -41,7 +42,7 @@ urlpatterns = [
     path('api/register/', UserRegisterView.as_view(), name='register'),
     path('api/login/',UserLoginView.as_view(),name='login'),
     path('account/', include('account.urls')),
-    path('songs',views.SongCreateView.as_view()),
+    path('songs/',views.SongCreateView.as_view()),
     path('song/<int:pk>',views.UpdateDeleteSongView.as_view()),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls))

@@ -5,6 +5,7 @@ from rest_framework.decorators import action
 from .serializers import (
     SongSerializer,
     PlaylistSerializer,
+    PlaylistSongRelationSerializer,
 )
 from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
 from .models import (
@@ -25,6 +26,14 @@ class SongView(viewsets.ModelViewSet):
     serializer_class = SongSerializer
     queryset = Song.objects.all()
 
+    @action(methods=["get"], detail=True)
+    def get_not_added_playlist(self, request, pk=None):
+        queryset = Playlist.objects.exclude(
+            playlist_song_relation__song=pk
+        )
+
+        serializer = PlaylistSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 class SongSearch(viewsets.ViewSet):
     serializer_class = SongSerializer
@@ -47,13 +56,18 @@ class PlaylistView(viewsets.ModelViewSet):
 
     @action(methods=["get"], detail=True)
     def get_relation_song(self, request, pk=None):
-        print(pk)
         queryset = Song.objects.filter(
-            song_relation__playlist=pk
+            song_playlist_relation__playlist=pk
         )
 
         serializer = SongSerializer(queryset, many=True)
         return Response(serializer.data)
+
+
+class PlaylistSongRelationView(viewsets.ModelViewSet):
+    serializer_class = PlaylistSongRelationSerializer
+    queryset = PlaylistSongRelation.objects.all()
+
 
 class SongCreateView(ListCreateAPIView):
     model = Song
@@ -75,6 +89,7 @@ class SongCreateView(ListCreateAPIView):
         return JsonResponse({
             'message':'Create a new Song unsuccessful!'
         }, status = status.HTTP_400_BAD_REQUEST)
+
 
 class UpdateDeleteSongView(RetrieveUpdateDestroyAPIView):
     model = Song

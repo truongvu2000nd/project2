@@ -1,0 +1,22 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.listAvailablePlaylist {
+  background-color: rgb(192, 150, 150);
+  height: 300px;
+  width: 300px;
+  text-decoration: none;
+  list-style-type: none;
+  overflow: auto
+}
+
+.listAvailablePlaylist li {
+  margin-left: 0;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+}

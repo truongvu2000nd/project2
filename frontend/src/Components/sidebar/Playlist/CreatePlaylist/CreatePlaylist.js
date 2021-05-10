@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./addPlaylist.css";
+import "./createPlaylist.css";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import CreatePlaylistModal from "./CreatePlaylistModal.js";
 
-function AddPlaylist() {
+function CreatePlaylist({ createPlaylist }) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = () => {
@@ -16,9 +16,13 @@ function AddPlaylist() {
         <AddBoxIcon className="add-icon" />
         <text className="add-title"> Create new playlist </text>
       </div>
-      <CreatePlaylistModal open={openModal} setOpen={setOpenModal} />
+      <CreatePlaylistModal
+        open={openModal}
+        setOpen={setOpenModal}
+        createPlaylist={createPlaylist}
+      />
     </div>
   );
 }
 
-export default AddPlaylist;
+export default CreatePlaylist;
