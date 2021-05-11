@@ -3,9 +3,8 @@ import "./loginModal.css";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import { Button } from "@material-ui/core";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 function LoginModal({ open, setOpen }) {
   const [values, setValues] = useState({
@@ -21,8 +20,38 @@ function LoginModal({ open, setOpen }) {
     setValues({ ...values, [prop]: event.target.value });
   };
 
+  const handleLogin = () => {
+    const csrftoken = Cookies.get("csrftoken");
+    axios
+      .post(
+        "api/login/",
+        {
+          email: values.email,
+          password: values.password,
+        },
+        { headers: { "X-CSRFToken": csrftoken } }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  };
+
   const loginForm = (
-    <form className="login-form" onSubmit="#">
+    <form
+      className="login-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleClose();
+        handleLogin();
+      }}
+    >
       <h1>Login</h1>
       <label>
         Email:
@@ -30,7 +59,7 @@ function LoginModal({ open, setOpen }) {
         <input
           type="text"
           value={values.email}
-          onChange={handleChange('email')}
+          onChange={handleChange("email")}
           placeholder="name@email.com"
         />
       </label>
@@ -41,7 +70,7 @@ function LoginModal({ open, setOpen }) {
         <input
           type="password"
           value={values.password}
-          onChange={handleChange('password')}
+          onChange={handleChange("password")}
           placeholder="Enter your password"
         />
       </label>
