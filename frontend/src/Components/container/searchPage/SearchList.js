@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import SongMenu from "../songMenu/SongMenu.js";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
-export default function SearchTable({ songs, addSong2Queue }) {
+
+export default function SearchList({ songs, addSong2Queue }) {
   const [xPos, setXPos] = useState("0px");
   const [yPos, setYPos] = useState("0px");
   const [showMenu, setShowMenu] = useState(false);
@@ -30,7 +32,7 @@ export default function SearchTable({ songs, addSong2Queue }) {
   });
 
   const songList = songs.map((song) => (
-    <tr
+    <li
       className="search-song"
       onClick={() => {
         addSong2Queue(song);
@@ -40,21 +42,26 @@ export default function SearchTable({ songs, addSong2Queue }) {
         setCurrSong(song);
       }}
     >
-      <td>{song.title}</td>
-      <td>{song.artist}</td>
-      <td>n/a</td>
-    </tr>
+      <div>
+        <img className="thumbnail" src={song.image} alt="cover_img"></img>
+        <h4>{song.title}</h4>
+      </div>
+      <h4>{song.artist}</h4>
+      {/* <FavoriteBorderIcon color="primary"/> */}
+    </li>
   ));
 
   return (
-    <table className="search-table">
-      <tr>
-        <th>TITLE</th>
-        <th>ARTIST</th>
-        <th>DURATION</th>
-      </tr>
-      {songList}
-      <SongMenu xPos={xPos} yPos={yPos} showMenu={showMenu} song={currSong} addSong2Queue={addSong2Queue} />
-    </table>
+    <div className="search-list">
+      <h2>Songs</h2>
+      <ul>{songList}</ul>
+      <SongMenu
+        xPos={xPos}
+        yPos={yPos}
+        showMenu={showMenu}
+        song={currSong}
+        addSong2Queue={addSong2Queue}
+      />
+    </div>
   );
 }

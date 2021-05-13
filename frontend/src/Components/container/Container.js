@@ -5,7 +5,7 @@ import Line from "./Line";
 import "./container.css";
 import SearchPage from "./searchPage/SearchPage.js";
 import PlaylistPage from "./playlistPage/PlaylistPage.js";
-import Library from "./library/Library.js"
+import Library from "./library/Library.js";
 
 import axios from "axios";
 //import icon
@@ -27,8 +27,10 @@ const Container = ({ addSong2Queue }) => {
   return (
     <div className="container">
       <div className="topNav">
-        <ChevronLeftIcon className="chevron" />
-        <ChevronRightIcon className="chevron" />
+        <div>
+          <ChevronLeftIcon className="chevron" />
+          <ChevronRightIcon className="chevron" />
+        </div>
         <Profile />
       </div>
       <Switch>
@@ -39,7 +41,7 @@ const Container = ({ addSong2Queue }) => {
           <SearchPage addSong2Queue={addSong2Queue} />
         </Route>
         <Route exact path="/playlist/:id">
-          <PlaylistPage addSong2Queue={addSong2Queue}/>
+          <PlaylistPage addSong2Queue={addSong2Queue} />
         </Route>
         <Route path="/library">
           <Library> </Library>

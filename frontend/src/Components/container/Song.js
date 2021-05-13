@@ -32,7 +32,7 @@ const Song = ({ song, addSong2Queue }) => {
   return (
     <div
       className="song"
-      onClick={() => addSong2Queue(song)}
+      // onClick={() => addSong2Queue(song)}
       onContextMenu={handleContextMenu}
     >
       <div>
@@ -40,7 +40,7 @@ const Song = ({ song, addSong2Queue }) => {
       </div>
       <div className="song_info">
         <h3 className="song_name">{song.title}</h3>
-        <h4 className="song_description"></h4>
+        <h4 className="song_description">{song.artist}</h4>
       </div>
       <SongMenu xPos={xPos} yPos={yPos} showMenu={showMenu} song={song} addSong2Queue={addSong2Queue} />
     </div>
