@@ -40,7 +40,6 @@ export default function CreatePlaylistModal({ open, setOpen, createPlaylist }) {
 
   return (
     <div>
-      <h1>{playlistName}</h1>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

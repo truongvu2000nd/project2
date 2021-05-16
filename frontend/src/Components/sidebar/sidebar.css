@@ -12,20 +12,21 @@
     vertical-align: baseline;
 }
 
-#logo{
+.logo{
     position: relative;
-    height: 100px;
-    width: 100px;
+    width: 224px;
+    top: 20px;
     margin-left: auto;
     margin-right: auto;
 }
 .tab{
     position: relative;
-    cursor: pointer;
-    margin-top: 15px;
-    /* padding-top: 10px; */
+    top: 40px;
+    height: fit-content;
+
 }
+
 .playlist{
-    margin-top: 25px;
+    margin-top: 0px;
     position: relative;
 }
