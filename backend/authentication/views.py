@@ -8,35 +8,38 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import User
-from .serializers import UserSersializer,UserLoginSerializer
+from .serializers import UserSerializer, UserLoginSerializer
 
 # Create your views here.
 
+
 class UserRegisterView(APIView):
-    def post(self,request):
-        serializer = UserSersializer(data=request.data)
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.validated_data['password'] = make_password(serializer.validated_data['password'])
+            serializer.validated_data['password'] = make_password(
+                serializer.validated_data['password'])
             user = serializer.save()
 
             return JsonResponse({
                 'message': 'Register successful!'
-            },status=status.HTTP_201_CREATED)
-        
+            }, status=status.HTTP_201_CREATED)
+
         else:
             return JsonResponse({
-                'error_message':'this email has already exist!',
+                'error_message': 'this email has already exist!',
                 'error_code': 400,
-            },status=status.HTTP_400_BAD_REQUEST)
+            }, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserLoginView(APIView):
-    def post(self,request):
+    def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid():
             user = authenticate(
                 request,
                 username=serializer.validated_data['email'],
-                password = serializer.validated_data['password']
+                password=serializer.validated_data['password']
             )
 
             if user:    
@@ -52,8 +55,8 @@ class UserLoginView(APIView):
                 'error_message': 'Email or password is incorrect!',
                 'error_code': 400,
             }, status=status.HTTP_400_BAD_REQUEST)
-        
+
         return Response({
             'error_message': serializer.errors,
             'error_code': 400
-        }, status= status.HTTP_400_BAD_REQUEST)
+        }, status=status.HTTP_400_BAD_REQUEST)
