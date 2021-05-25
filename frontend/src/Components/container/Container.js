@@ -12,7 +12,7 @@ import axios from "axios";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
-const Container = ({ addSong2Queue }) => {
+const Container = ({ addSong2Queue, isLogin, setIsLogin }) => {
   const [publicSongs, setPublicSongs] = useState([]);
 
   useEffect(() => {
@@ -31,11 +31,11 @@ const Container = ({ addSong2Queue }) => {
           <ChevronLeftIcon className="chevron" />
           <ChevronRightIcon className="chevron" />
         </div>
-        <Profile />
+        <Profile isLogin={isLogin} setIsLogin={setIsLogin}/>
       </div>
       <Switch>
         <Route exact path="/">
-          <Line songs={publicSongs} addSong2Queue={addSong2Queue} />
+          <Line songs={publicSongs} addSong2Queue={addSong2Queue} isLogin={isLogin} setIsLogin={setIsLogin}/>
         </Route>
         <Route path="/search">
           <SearchPage addSong2Queue={addSong2Queue} />

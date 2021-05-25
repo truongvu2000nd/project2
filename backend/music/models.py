@@ -7,8 +7,8 @@ class Song(models.Model):
     title = models.CharField(max_length=200)
     file = models.FileField(upload_to='musics/')
     image = models.FileField(upload_to='imgs/', null=True)
-    genre = models.CharField(max_length=50, null=True)
-    artist = models.CharField(max_length=200, null=True)
+    genre = models.CharField(max_length=50, default='')
+    artist = models.CharField(max_length=200, default='n/a')
     def __str__(self):
         return self.title
 
@@ -16,6 +16,7 @@ class Song(models.Model):
 ### add user to playlist
 class Playlist(models.Model):
     name = models.CharField(max_length=200)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="playlists", default=1)
 
     def __str__(self):
         return self.name

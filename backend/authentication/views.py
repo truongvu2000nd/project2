@@ -43,7 +43,6 @@ class UserLoginView(APIView):
             )
 
             if user:
-                print("user co dung ko")
                 refresh = TokenObtainPairSerializer.get_token(user)
                 data = {
                     'refresh_token': str(refresh),

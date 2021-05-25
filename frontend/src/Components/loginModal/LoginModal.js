@@ -6,7 +6,7 @@ import Fade from "@material-ui/core/Fade";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-function LoginModal({ open, setOpen }) {
+function LoginModal({ open, setOpen, setIsLogin }) {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -32,7 +32,11 @@ function LoginModal({ open, setOpen }) {
         { headers: { "X-CSRFToken": csrftoken } }
       )
       .then((response) => {
-        console.log(response);
+        // localStorage.setItem("id", response.data.id);
+        localStorage.setItem("access_token", response.data.access_token);
+        localStorage.setItem("refresh_token", response.data.refresh_token);
+        setIsLogin(true);
+        // return response;
       })
       .catch(function (error) {
         if (error.response) {
@@ -41,6 +45,10 @@ function LoginModal({ open, setOpen }) {
           console.log(error.response.headers);
         }
       });
+    setValues({
+      email: "",
+      password: "",
+    });
   };
 
   const loginForm = (
@@ -50,6 +58,7 @@ function LoginModal({ open, setOpen }) {
         e.preventDefault();
         handleClose();
         handleLogin();
+        // window.location.reload();
       }}
     >
       <h1>Login</h1>

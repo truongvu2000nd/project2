@@ -136,7 +136,13 @@ CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000'
 ]
 
-#using this model instead of it's user model
+# using this model instead of it's user model
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
 AUTH_USER_MODEL = 'authentication.User'
 
 SIMPLE_JWT = {
