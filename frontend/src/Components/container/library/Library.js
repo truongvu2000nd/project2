@@ -19,7 +19,27 @@ import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import ImageIcon from "@material-ui/icons/Image";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import CloudUploadOutlinedIcon from "@material-ui/icons/CloudUploadOutlined";
+import { makeStyles } from '@material-ui/core/styles';
 
+
+const useStyles = makeStyles({
+  root: {
+    background: '#484848',
+    color: 'white',
+    borderRadius: 3,
+    border: 0,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px #484848',
+  },
+  select:{
+    background: '#004c8c',
+    color: 'white',
+    borderRadius: 3,
+    border: 0,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px #004c8c',
+  },
+});
 function Library() {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
@@ -30,6 +50,7 @@ function Library() {
   const [submitting, setSubmitting] = useState(false);
   const [fileError, setFileError] = useState("");
   const [imageError, setImageError] = useState("");
+  const classes = useStyles();
 
   const handleAudioChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -88,8 +109,7 @@ function Library() {
       <Button
         onClick={() => setOpen(true)}
         className="add-button"
-        variant={open ? "contained" : "outlined"}
-        color={open ? "primary" : "default"}
+        classes={open?{root: classes.select}:{root: classes.root}}
         startIcon={open ? <CloudUploadOutlinedIcon /> : <CloudUploadIcon />}
       >
         Upload song

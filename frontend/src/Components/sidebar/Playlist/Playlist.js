@@ -2,10 +2,25 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CreatePlaylist from "./CreatePlaylist/CreatePlaylist.js";
 import Cookies from 'js-cookie';
-import "./playlist.css";
 import axios from "axios";
 
+import { makeStyles } from '@material-ui/core/styles';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+const useStyles = makeStyles({
+  root: {
+    background: '#000000',
+    color: 'white',
+    textTransform: 'capitalize',
+    height: '48px',
+  },
+});
+
 function Playlist() {
+  const classes = useStyles();
   const [playlists, setPlaylists] = useState([{
     "id": 0,
     "name": "",
@@ -13,15 +28,16 @@ function Playlist() {
 
   const renderPlaylists = () => {
     const listPlaylist = playlists.map((playlist) => (
-      <li>
-        <div className="playlist-name">
-          <Link to={{ pathname: `/playlist/${playlist.id}` }}>
-            {playlist.name}
-          </Link>
-        </div>
-      </li>
+      <List >
+        <ListItem className={classes.root}
+          component={Link} to ={ `/playlist/${playlist.id}` }
+        >
+          <ListItemText primary={playlist.name} > </ListItemText>
+        </ListItem>        
+      </List>
     ));
-    return <ul className="list-playlist">{listPlaylist}</ul>;
+    return <div style={{maxHeight: 159, overflow: 'auto', width: "100%"}}>
+          {listPlaylist} </div>;
   };
 
   async function refreshList() {
@@ -73,11 +89,17 @@ function Playlist() {
   };
 
   return (
-    <div className="playlist">
-      <text className="playlist-title"> Playlist </text>
-      <div>{renderPlaylists()}</div>
-      <CreatePlaylist createPlaylist={createPlaylist}/>
+    <div>
+      <List >
+        <ListItem>
+          <CreatePlaylist createPlaylist={createPlaylist} />
+        </ListItem>
+        <ListItem>
+          {renderPlaylists()}
+        </ListItem>
+      </List>
     </div>
+    
   );
 }
 
