@@ -14,13 +14,21 @@ export default function PlaylistPage({ addSong2Queue }) {
   useEffect(() => {
     async function getPlaylist() {
       // Get cac playlist
-      const res = await axios.get(`/api/playlists/${id}`);
+      const res = await axios.get(`/api/playlists/${id}`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      });
       setPlaylist(res.data);
     }
 
     async function getRelationSongs() {
       // Get cac bai hat trong playlist
-      const res = await axios.get(`/api/playlists/${id}/get_relation_song`);
+      const res = await axios.get(`/api/playlists/${id}/get_relation_song`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      });
       setRelationSongs(res.data);
     }
     getPlaylist();

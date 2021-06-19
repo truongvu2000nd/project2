@@ -27,7 +27,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 from authentication.views import UserRegisterView, UserLoginView
 # to handle login ( generate token)
-from rest_framework_simplejwt import views as jwt_views
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 
 router = routers.DefaultRouter()
@@ -45,5 +48,7 @@ urlpatterns = [
     path('songs/', views.SongCreateView.as_view()),
     path('song/<int:pk>', views.UpdateDeleteSongView.as_view()),
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

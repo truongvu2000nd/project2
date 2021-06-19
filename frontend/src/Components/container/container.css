@@ -37,7 +37,6 @@
   cursor: pointer;
   height: 70%;
   position: relative;
-  width: 100px;
   display: flex;
   justify-content: center;
 }
@@ -55,7 +54,7 @@
   line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
-  margin: auto;
+  margin: auto 10px auto 10px;
 }
 
 .chevron {
@@ -384,3 +383,7 @@ td {
   cursor: pointer;
   background: rgb(182, 182, 182);
 }
+
+
+/* responsesive */
+

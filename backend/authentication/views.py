@@ -42,7 +42,7 @@ class UserLoginView(APIView):
                 password=serializer.validated_data['password']
             )
 
-            if user:    
+            if user:
                 refresh = TokenObtainPairSerializer.get_token(user)
                 data = {
                     'refresh_token': str(refresh),

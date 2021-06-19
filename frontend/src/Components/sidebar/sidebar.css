@@ -31,3 +31,12 @@
     margin-top: 0px;
     position: relative;
 }
+
+/* responsive */
+@media (max-width: 739px) {
+    .side-bar{
+        display: none;
+    }
+
+    
+}

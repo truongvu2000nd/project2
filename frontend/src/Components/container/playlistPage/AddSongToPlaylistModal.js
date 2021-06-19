@@ -22,7 +22,12 @@ function AddSongToPlaylistModal({ open, setOpen, song }) {
           playlist: playlist.id,
           song: song.id,
         },
-        { headers: { "X-CSRFToken": csrftoken } }
+        {
+          headers: {
+            "X-CSRFToken": csrftoken,
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+          },
+        }
       )
       .then(
         (response) => {
@@ -37,7 +42,11 @@ function AddSongToPlaylistModal({ open, setOpen, song }) {
 
   const renderListPlaylist = () => {
     axios
-      .get(`api/songs/${song.id}/get_not_added_playlist`)
+      .get(`api/songs/${song.id}/get_not_added_playlist`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+      })
       .then((res) => {
         console.log(res);
         setAvailablePlaylists(res.data);

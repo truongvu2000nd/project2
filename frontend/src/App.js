@@ -20,6 +20,7 @@ import Sidebar from "./Components/sidebar/Sidebar.js";
 
 function App() {
   const [queue, setQueue] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
 
   const addSong2Queue = (song) => {
     setQueue([...queue, song]);
@@ -30,8 +31,8 @@ function App() {
     <Router>
       <div className="App">
         <div className="App-Container">
-          <Sidebar />
-          <Container addSong2Queue={addSong2Queue} />
+          <Sidebar isLogin={isLogin} setIsLogin={setIsLogin}/>
+          <Container addSong2Queue={addSong2Queue} isLogin={isLogin} setIsLogin={setIsLogin}/>
           <BottomPlayer queue={queue} />
         </div>
       </div>
